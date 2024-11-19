@@ -254,3 +254,24 @@
             border: none;
         }
 }
+@property --from {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+
+.animation-counter {
+  transition: --from 1s;
+  counter-reset: int var(--from);
+  animation: counter var(--time, 1000) forwards ease-in-out;
+}
+
+.animation-counter::after {
+  content: counter(int);
+}
+
+@keyframes counter {
+  to {
+    --from: var(--to, 100);
+  }
+}

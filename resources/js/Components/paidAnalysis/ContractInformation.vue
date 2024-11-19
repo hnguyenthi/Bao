@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from 'vue';
+import { formatPrice } from '@utils';
+import UploadImage  from '@/Components/UploadImage.vue'
 const mockData = ref([
     {
         name: 'グリーンパーク川口',
@@ -32,43 +34,112 @@ const mockData = ref([
         urlImage: '',
     },
 ]);
-const img = ref("")
+const img = ref('');
+
 </script>
 <template>
-    <div>
-        <div class="contract-content grid grid-cols-8 gap-4">
+    <div class="">
+        
+        <div
+            class="contract-content grid grid-cols-8"
+            v-for="(data, index) in mockData"
+            :key="index"
+        >
             <div class="contract-info col-span-2">
-                <div class="relative mr-7">
-                    <div>
-                        <img v-if="!img" src="@assets/images/common/noimage-icon.svg" alt="noimage-icon">
-                        <img v-else :src="img" alt="">
-                    </div>
-                    <div class="w-[30px] h-[30px] rounded-full bg-white shadow-md hover:opacity-70 flex justify-center items-center cursor-pointer absolute -right-3 -bottom-3">
-                        <img src="@assets/images/common/icon-img-upload.svg" alt="icon-img-upload">
-                    </div>
+                <div class="mr-7">
+                    <UploadImage v-model="data.urlImage" />
                 </div>
                 <div>
-                    <p class="text-[14px]">{{'グリーンパーク川口'}}</p>
-                    <p class="text-[12px]">{{`在室数${5}／空室数${1}`}}</p>
+                    <p class="text-[14px]">{{ data.name }}</p>
+                    <p class="text-[12px]">
+                        {{
+                            `在室数${data.room.lending}／空室数${data.room.empty}`
+                        }}
+                    </p>
                 </div>
             </div>
-            <div class="col-span-3">
-                <div class="grid grid-cols-3 gap-4">
+            <div class="contract-balance col-span-3 px-[18px]">
+                <div class="flex h-full items-center justify-between">
                     <div>
-                        <p>収入</p>
-                        <p class="text-info-600 font-medium">￥242,000</p>
+                        <p class="text-[12px] font-medium">収入</p>
+                        <p class="text-info-600 text-h6 font-medium">
+                            {{ formatPrice(data.income) }}
+                        </p>
                     </div>
                     <div>
-                        <p>支出</p>
-                        <p></p>
+                        <p class="text-[12px] font-medium">支出</p>
+                        <p class="text-error-100 text-h6 font-medium">
+                            {{ formatPrice(data.expenses) }}
+                        </p>
                     </div>
                     <div>
-                        <p>支出</p>
-                        <p></p>
+                        <p class="text-[12px] font-medium">利益</p>
+                        <p class="text-info-600 text-h6 font-medium">
+                            {{ formatPrice(data.income - data.expenses) }}
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="col-span-3">actine</div>
+            <div class="col-span-3 px-[18px]">
+                <div class="flex h-full items-center justify-between">
+                    <div class="cursor-pointer hover:opacity-70">
+                        <div class="flex justify-center">
+                            <img
+                                src="@assets/images/paidAnalysis/icon-paidAnalysisPropertyStatus.svg"
+                                alt=""
+                            />
+                        </div>
+                        <p class="text-info-600 pt-[10px] text-[14px]">
+                            物件管理
+                        </p>
+                    </div>
+                    <div class="cursor-pointer hover:opacity-70">
+                        <div class="flex justify-center">
+                            <img
+                                src="@assets/images/paidAnalysis/icon-paidAnalysisIncomeStatus.svg"
+                                alt=""
+                            />
+                        </div>
+                        <p class="text-info-600 pt-[10px] text-[14px]">
+                            収入明細
+                        </p>
+                    </div>
+                    <div class="cursor-pointer hover:opacity-70">
+                        <div class="flex justify-center">
+                            <img
+                                src="@assets/images/paidAnalysis/icon-paidAnalysisExpenseStatus.svg"
+                                alt=""
+                            />
+                        </div>
+                        <p class="text-info-600 pt-[10px] text-[14px]">
+                            支出明細
+                        </p>
+                    </div>
+                    <div class="cursor-pointer hover:opacity-70">
+                        <div class="flex justify-center">
+                            <img
+                                src="@assets/images/paidAnalysis/icon-paidAnalysisIncomeList.svg"
+                                alt=""
+                            />
+                        </div>
+                        <p class="text-info-600 pt-[10px] text-[14px]">
+                            入金一覧
+                        </p>
+                    </div>
+                    <div class="cursor-pointer hover:opacity-70">
+                        <div class="flex justify-center">
+                            <img
+                                src="@assets/images/paidAnalysis/icon-paidAnalysisBalanceList.svg"
+                                alt=""
+                            />
+                        </div>
+
+                        <p class="text-info-600 pt-[10px] text-[14px]">
+                            収支一覧
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -78,20 +149,42 @@ const img = ref("")
     justify-content: flex-start;
     align-items: center;
     position: relative;
-    padding-right: 18px;
     flex: 0 0 280px;
     &::after {
-        content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 1px;
-    height: 34px;
-    background-color: #d5d5d5;
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 1px;
+        height: 34px;
+        background-color: theme('colors.grey');
+    }
+}
+.contract-balance {
+    position: relative;
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 1px;
+        height: 34px;
+        background-color: theme('colors.grey');
+    }
+}
+.contract-content {
+    border-top: solid 1px theme('colors.grey');
+    padding: 8px 0px;
+    &:last-child {
+        border-bottom: solid 1px theme('colors.grey');
     }
 }
 </style>
