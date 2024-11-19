@@ -5,7 +5,7 @@ import DatePicker from '@/Components/DatePicker.vue';
 import MenuDown from 'vue-material-design-icons/MenuDown.vue';
 import BarChart from '@/Components/BarChart.vue';
 import Doughnut from '@/Components/DoughnutChart.vue'
-
+import ContractInformation from '@/Components/paidAnalysis/ContractInformation.vue'
 const date = ref();
 const breadcrumbs = ref([
     {
@@ -76,8 +76,8 @@ const data = computed(() => {
                         <span> 年表示 </span>
                     </div>
                 </div>
-                <div class="py-5">
-                    <div class="flex justify-center">
+                <div class="py-5 mx-[50px]">
+                    <div class="flex justify-center  border-b-[1px] border-solid">
                         <div class="max-w-[242px]">
                             <DatePicker
                                 v-if="tab === 'month'"
@@ -91,14 +91,12 @@ const data = computed(() => {
                             />
                         </div>
                     </div>
-
-                    <div>
+                    <div class="flex justify-center mb-[32px]">
                         <BarChart />
                     </div>
                     <div>
-                        <Doughnut />
+                        <ContractInformation />
                     </div>
-                    <div>Table</div>
                 </div>
             </div>
         </div>

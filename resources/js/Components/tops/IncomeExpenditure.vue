@@ -1,5 +1,5 @@
 <script setup>
-import Dropdown from '@/Components/Dropdown.vue';
+import Dropdown from '@/Components/paidAnalysis/Dropdown.vue';
 import { Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
 const mockData = ref({

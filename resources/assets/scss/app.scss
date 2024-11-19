@@ -226,7 +226,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.dp__main {
+.dp__main, .dp__input_wrap {
     // width: 100%;
     input {
         border: none;
@@ -236,10 +236,21 @@
         &:focus {
             border: none;
         }
+         &:focus-visible {
+            border: none;
+        }
     }
     .dp__input_icon {
         font-size: 28px;
         color: theme('colors.primary');
         left: 165px;
     }
+}
+.dp__input {
+    &:focus {
+            border: none;
+        }
+         &:focus-visible {
+            border: none;
+        }
 }
