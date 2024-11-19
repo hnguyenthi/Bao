@@ -19,16 +19,16 @@ const options = {
     cutout: '80%',
     radius: '100%',
     plugins: {
-      legend: {
-          display: true,
-          position: 'bottom',
-          labels: {
-              boxWidth: 20,
-              font: {
-                  size: 14,
-              },
-          },
-      },
+        legend: {
+            display: true,
+            position: 'bottom',
+            labels: {
+                boxWidth: 20,
+                font: {
+                    size: 14,
+                },
+            },
+        },
     },
 };
 const plugins = {
@@ -58,8 +58,8 @@ const plugins = {
 };
 </script>
 <template>
-<p class="pb-5 w-[350px] text-center text-[20px]">グリーンパーク川口</p>
-    <div class="w-[350px] h-[350px]">
+    <p class="w-[350px] pb-5 text-center text-[20px]">グリーンパーク川口</p>
+    <div class="h-[350px] w-[350px]">
         <Doughnut :data="data" :options="options" :plugins="[plugins]" />
     </div>
 </template>
