@@ -43,6 +43,7 @@ export default {
                     300: '#249ed8',
                     400: '#c9dae1',
                     500: '#000000a3',
+                    600: '#1f68c9'
                 },
                 dark: '#000',
                 white: '#fff',
@@ -50,6 +51,9 @@ export default {
                 gray: '#333',
                 grey: '#d5d5d5',
                 success: '#34b46d',
+                error: {
+                    100: '#e5111b'
+                }
             },
             borderRadius: {
                 none: '0',

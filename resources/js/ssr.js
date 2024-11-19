@@ -5,7 +5,6 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createSSRApp, h } from 'vue';
 // import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/index';
 import DefaultLayout from './Layouts/DefaultLayout.vue';
-
 createServer((page) =>
     createInertiaApp({
         page,

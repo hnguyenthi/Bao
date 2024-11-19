@@ -19,25 +19,25 @@ ChartJS.register(
     Legend,
 );
 const data = {
-    labels: [''],
+    labels: ['', ''],
     datasets: [
         {
             label: '収入',
-            data: [747],
+            data: [747, 0],
             backgroundColor: '#1e4290',
             stack: 'Stack 0',
             setPercentage: 0.7,
         },
         {
             label: '支出',
-            data: [230],
+            data: [0, 230],
             backgroundColor: '#d5d5d5',
             stack: 'Stack 1',
             setPercentage: 0.7,
         },
         {
             label: '利益',
-            data: [517],
+            data: [0, 517],
             backgroundColor: '#a38e5a',
             stack: 'Stack 1',
             setPercentage: 10,
@@ -45,38 +45,57 @@ const data = {
     ],
 };
 const options = {
+    responsive: true,
     scales: {
-        xAxes: [
-            {
-                stacked: true,
-                id: 'xAxis1',
-                type: 'category',
-                ticks: {
-                    callback: function (label) {
-                        var month = label.split(';')[0];
-                        var year = label.split(';')[1];
-                        return month;
-                    },
+        y: {
+            beginAtZero: true,
+            ticks: {
+                font: {
+                    size: 18,
                 },
-                barThickness: 10, // number (pixels) or 'flex'
-                maxBarThickness: 1,
-            },
-        ],
-        yAxes: [
-            {
-                maxBarThickness: 1,
-                ticks: {
-                    callback: function (label) {
-                        return '円';
-                    },
+                maxTicksLimit: 5,
+                callback: function (label, index) {
+                    if (index == 4) {
+                        return [
+                            '（千円）',
+                            label
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+                        ];
+                    } else {
+                        return label
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    }
                 },
             },
-        ],
+        },
     },
+    tooltips: {
+        enabled: true,
+    },
+    plugins: {
+      legend: {
+        display: true,
+        position: "top",
+        labels: {
+          boxWidth: 20,
+          font: {
+            size: 18,
+          }
+        }
+      }
+    },
+    animation: {
+        animateScale: true,
+        animateRotate: true,
+    },
+    cutoutPercentage: 80,
 };
 </script>
 <template>
-    <div class="h-[405px] w-[540px] p-[50px]">
+    <div class="mt-10">
         <Bar :data="data" :options="options" width="540" height="405" />
+        <p class="text-[12px]">※グラフの金額は千円未満を四捨五入しています。</p>
     </div>
 </template>
