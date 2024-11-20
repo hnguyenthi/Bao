@@ -14,6 +14,7 @@ const navbar = ref([
     {
         title: '物件管理・分析',
         link: 'paidAnalysisDashboard',
+        childLink: true,
         icon: iconPaidAnalysisDashboard,
     },
     {
@@ -27,11 +28,11 @@ const navbar = ref([
         title: '提携サービス',
         link: 'premium',
         icon: iconPremium,
-        // link: 'profile.edit',
     },
     {
         title: 'セミナー動画',
         icon: iconMemberContent,
+        link: 'seminal',
     },
     {
         title: 'お知らせ',
@@ -67,7 +68,8 @@ const navbar = ref([
                 <Link
                     class="md:navbar-item relative flex font-bold text-primary hover:bg-secondary-200"
                     :class="{
-                        'bg-secondary-300 md:border-b-4 md:border-secondary-100': true,
+                        'bg-secondary-300 md:border-b-4 md:border-secondary-100':
+                            route().current(item.link) || item.childLink,
                     }"
                     v-for="item in navbar"
                     :key="item.title"

@@ -18,15 +18,31 @@ Route::get('/', function () {
 Route::get('/top', function () {
     return Inertia::render('Top');
 })->name('top');
-Route::get('/home', function () {
-    return Inertia::render('Home');
-})->name('home');
-Route::get('/welcome', function () {
-    return Inertia::render('Welcome');
-})->name('home');
+
 Route::get('/paidAnalysisDashboard', function () {
     return Inertia::render('PaidAnalysisDashboard');
 })->name('paidAnalysisDashboard');
+
+Route::get('/paidAnalysisPropertyStatus', function () {
+    return Inertia::render('PaidAnalysisIncomeStatus');
+})->name('paidAnalysisPropertyStatus');
+
+Route::get('/paidAnalysisIncomeStatus', function () {
+    return Inertia::render('PaidAnalysisIncomeStatus');
+})->name('paidAnalysisIncomeStatus');
+
+Route::get('/paidAnalysisExpenseStatus', function () {
+    return Inertia::render('PaidAnalysisIncomeStatus');
+})->name('paidAnalysisExpenseStatus');
+
+Route::get('/paidAnnualPaymentInformation', function () {
+    return Inertia::render('PaidAnalysisIncomeStatus');
+})->name('paidAnnualPaymentInformation');
+
+Route::get('/paidAnnualBalanceInformation', function () {
+    return Inertia::render('PaidAnalysisIncomeStatus');
+})->name('paidAnnualBalanceInformation');
+
 // Route::get('/report', function () {
 //     return Inertia::render('Home');
 // })->name('report');

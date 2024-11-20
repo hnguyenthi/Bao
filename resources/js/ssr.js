@@ -3,7 +3,9 @@ import createServer from '@inertiajs/vue3/server';
 import { renderToString } from '@vue/server-renderer';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createSSRApp, h } from 'vue';
-// import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/index';
+import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/index';
+import { Ziggy } from './ziggy';
+
 import DefaultLayout from './Layouts/DefaultLayout.vue';
 createServer((page) =>
     createInertiaApp({
@@ -25,6 +27,9 @@ createServer((page) =>
                 render: () => h(App, props),
             })
                 .use(plugin)
+                .use(ZiggyVue, Ziggy)
+            .mixin({ methods: { route } })
+            
         },
     }),
 );

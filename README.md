@@ -18,4 +18,4 @@
 ## Run mode SSR
 
 - npm run build
-- npm run dev
+- php artisan inertia:start-ssr
