@@ -2,10 +2,10 @@
 import Breadcrumb from '@/Components/Breadcrumb.vue';
 import { ref, computed } from 'vue';
 import DatePicker from '@/Components/DatePicker.vue';
-import MenuDown from 'vue-material-design-icons/MenuDown.vue';
 import BarChart from '@/Components/BarChart.vue';
 import Doughnut from '@/Components/DoughnutChart.vue'
-import ContractInformation from '@/Components/paidAnalysis/ContractInformation.vue'
+import ContractInformation from '@/Components/paidAnalysis/ContractInformation.vue';
+import TilePage from '@/Components/TitlePage.vue';
 const date = ref();
 const breadcrumbs = ref([
     {
@@ -55,10 +55,10 @@ const data = computed(() => {
 });
 </script>
 <template>
-    <div>
+    <div class="bg-light">
         <Breadcrumb :breadcrumbs="breadcrumbs"></Breadcrumb>
-        <div class="container mx-auto pb-[60px] pt-[35px]">
-            <h2 class="text-h2 font-medium">物件管理・分析</h2>
+        <TilePage  title="物件管理・分析" />
+        <div class="container mx-auto pb-[60px] bg-white">
             <div class="paid-analysis__content">
                 <div class="grid h-[54px] grid-cols-2 gap-0">
                     <div
@@ -77,7 +77,7 @@ const data = computed(() => {
                     </div>
                 </div>
                 <div class="py-5 mx-[50px]">
-                    <div class="flex justify-center  border-b-[1px] border-solid">
+                    <div class="flex justify-center border-grey  border-b-[1px] border-solid">
                         <div class="max-w-[242px]">
                             <DatePicker
                                 v-if="tab === 'month'"

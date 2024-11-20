@@ -43,7 +43,8 @@ export default {
                     300: '#249ed8',
                     400: '#c9dae1',
                     500: '#000000a3',
-                    600: '#1f68c9'
+                    600: '#1f68c9',
+                    700: '#5c9ee7'
                 },
                 dark: '#000',
                 white: '#fff',
@@ -53,6 +54,10 @@ export default {
                 success: '#34b46d',
                 error: {
                     100: '#e5111b'
+                },
+                table: {
+                    100: '#d4ddf0',
+                    200: '#f2f2f2',
                 }
             },
             borderRadius: {

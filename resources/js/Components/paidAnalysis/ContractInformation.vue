@@ -1,7 +1,41 @@
 <script setup>
 import { ref } from 'vue';
 import { formatPrice } from '@utils';
-import UploadImage  from '@/Components/UploadImage.vue'
+import { Link } from '@inertiajs/vue3';
+
+import paidAnalysisPropertyStatus from '@assets/images/paidAnalysis/icon-paidAnalysisPropertyStatus.svg';
+import paidAnalysisIncomeStatus from '@assets/images/paidAnalysis/icon-paidAnalysisIncomeStatus.svg';
+import paidAnalysisExpenseStatus from '@assets/images/paidAnalysis/icon-paidAnalysisExpenseStatus.svg';
+import paidAnalysisIncomeList from '@assets/images/paidAnalysis/icon-paidAnalysisIncomeList.svg';
+import paidAnalysisBalanceList from '@assets/images/paidAnalysis/icon-paidAnalysisBalanceList.svg';
+import UploadImage from '@/Components/UploadImage.vue';
+const tabs = ref([
+    {
+        title: '物件管理',
+        icon: paidAnalysisPropertyStatus,
+        link: 'paidAnalysisPropertyStatus',
+    },
+    {
+        title: '収入明細',
+        icon: paidAnalysisIncomeStatus,
+        link: 'paidAnalysisIncomeStatus',
+    },
+    {
+        title: '支出明細',
+        icon: paidAnalysisExpenseStatus,
+        link: 'paidAnalysisExpenseStatus',
+    },
+    {
+        title: '入金一覧',
+        icon: paidAnalysisIncomeList,
+        link: 'paidAnnualPaymentInformation',
+    },
+    {
+        title: '収支一覧',
+        icon: paidAnalysisBalanceList,
+        link: 'paidAnnualBalanceInformation',
+    },
+]);
 const mockData = ref([
     {
         name: 'グリーンパーク川口',
@@ -35,11 +69,9 @@ const mockData = ref([
     },
 ]);
 const img = ref('');
-
 </script>
 <template>
     <div class="">
-        
         <div
             class="contract-content grid grid-cols-8"
             v-for="(data, index) in mockData"
@@ -62,19 +94,19 @@ const img = ref('');
                 <div class="flex h-full items-center justify-between">
                     <div>
                         <p class="text-[12px] font-medium">収入</p>
-                        <p class="text-info-600 text-h6 font-medium">
+                        <p class="text-h6 font-medium text-info-600">
                             {{ formatPrice(data.income) }}
                         </p>
                     </div>
                     <div>
                         <p class="text-[12px] font-medium">支出</p>
-                        <p class="text-error-100 text-h6 font-medium">
+                        <p class="text-h6 font-medium text-error-100">
                             {{ formatPrice(data.expenses) }}
                         </p>
                     </div>
                     <div>
                         <p class="text-[12px] font-medium">利益</p>
-                        <p class="text-info-600 text-h6 font-medium">
+                        <p class="text-h6 font-medium text-info-600">
                             {{ formatPrice(data.income - data.expenses) }}
                         </p>
                     </div>
@@ -82,62 +114,16 @@ const img = ref('');
             </div>
             <div class="col-span-3 px-[18px]">
                 <div class="flex h-full items-center justify-between">
-                    <div class="cursor-pointer hover:opacity-70">
-                        <div class="flex justify-center">
-                            <img
-                                src="@assets/images/paidAnalysis/icon-paidAnalysisPropertyStatus.svg"
-                                alt=""
-                            />
+                    <Link v-for="(tab, index) in tabs" :key="index + tab.title" :href="tab.link">
+                        <div class="cursor-pointer hover:opacity-70">
+                            <div class="flex justify-center">
+                                <img :src="tab.icon" alt="" />
+                            </div>
+                            <p class="pt-[10px] text-[14px] text-info-600">
+                                {{ tab.title }}
+                            </p>
                         </div>
-                        <p class="text-info-600 pt-[10px] text-[14px]">
-                            物件管理
-                        </p>
-                    </div>
-                    <div class="cursor-pointer hover:opacity-70">
-                        <div class="flex justify-center">
-                            <img
-                                src="@assets/images/paidAnalysis/icon-paidAnalysisIncomeStatus.svg"
-                                alt=""
-                            />
-                        </div>
-                        <p class="text-info-600 pt-[10px] text-[14px]">
-                            収入明細
-                        </p>
-                    </div>
-                    <div class="cursor-pointer hover:opacity-70">
-                        <div class="flex justify-center">
-                            <img
-                                src="@assets/images/paidAnalysis/icon-paidAnalysisExpenseStatus.svg"
-                                alt=""
-                            />
-                        </div>
-                        <p class="text-info-600 pt-[10px] text-[14px]">
-                            支出明細
-                        </p>
-                    </div>
-                    <div class="cursor-pointer hover:opacity-70">
-                        <div class="flex justify-center">
-                            <img
-                                src="@assets/images/paidAnalysis/icon-paidAnalysisIncomeList.svg"
-                                alt=""
-                            />
-                        </div>
-                        <p class="text-info-600 pt-[10px] text-[14px]">
-                            入金一覧
-                        </p>
-                    </div>
-                    <div class="cursor-pointer hover:opacity-70">
-                        <div class="flex justify-center">
-                            <img
-                                src="@assets/images/paidAnalysis/icon-paidAnalysisBalanceList.svg"
-                                alt=""
-                            />
-                        </div>
-
-                        <p class="text-info-600 pt-[10px] text-[14px]">
-                            収支一覧
-                        </p>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </div>
