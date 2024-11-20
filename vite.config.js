@@ -1,6 +1,5 @@
 import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
-import path from 'path';
 import { defineConfig } from 'vite';
 export default defineConfig({
     plugins: [
@@ -22,7 +21,7 @@ export default defineConfig({
         alias: {
             '@assets': '/resources/assets',
             '@utils': '/resources/utils',
-            'ziggy-js': path.resolve('vendor/tightenco/ziggy'),
+            ziggy: 'vendor/tightenco/ziggy/dist',
         },
     },
     build: {

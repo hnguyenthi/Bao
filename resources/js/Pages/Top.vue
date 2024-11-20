@@ -57,9 +57,7 @@ const mockDataSlideSeminar = ref([
     },
 ]);
 const openModal = ref(false);
-const closeModal = () => {
-    openModal.value = false;
-};
+
 const handleYes = () => {
     console.log("yes")
 }
@@ -102,7 +100,7 @@ const handleNo = () => {
             </div>
         </div>
     </div>
-    <Modal :show="openModal" @close="closeModal" @yes="handleYes" @no="handleNo">
+    <Modal :show="openModal" @yes="handleYes" >
         <p class="text-center">外部のサイトに移動しますがよろしいですか？</p>
     </Modal>
 </template>
